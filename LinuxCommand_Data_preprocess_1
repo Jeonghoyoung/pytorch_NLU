@@ -1,0 +1,15 @@
+linux command
+
+- 여러 텍스트 파일 하나의 파일로 합치기
+	- cat ./path/*.extention > ./path/*.other_extention
+
+- Shuffle text
+	- brew install coreutils
+	- shuf ./filename > ./save_filename
+
+- train/vaild/test split
+	- head -n [N_train] ./target_file.tsv > ./target_train_file.tsv ; tail -n [N - N_train] ./target_file.tsv | head -n [N_vaild] > ./target_vaild.tsv ;
+	tail -n [N - N_train - N_vaild] ./target_file.tsv > target_test.tsv
+
+- tsv file 짜르기
+	- cut f1 ./target_file.tsv > ./target_file.src ; cut f2 ./target_file.tsv > ./target_file.tgt

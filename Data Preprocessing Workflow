@@ -1,0 +1,36 @@
+Data Preprocessing Workflow
+
+1. 데이터 수집
+	- 구입 또는 외주
+	- 크롤링을 통한 수집
+
+2. 정제
+	- Task에 따른 노이즈 제거
+	- 인코딩 변환
+
+3. 레이블링
+	- 문장마다 또는 단어마다 labeling 수행
+
+4. Tokenization (optional)
+	- 형태소 분석기(ex: mecab)를 활용하여 분절 수행.
+		- 접사를 분리하여 희소성을 낮추고 띄어쓰기를 통일하게 위해 수행한다.
+
+5. Subword Segmentation (optional)
+	- 단어보다 더 작은 의미 단위 추가 분절 수행
+		- BPE 압축 알고리즘을 통해 통계적으로 더 작은 의미 단위(subword)로 분절 수행
+		- BPE를 통해 OOV를 없앨 수 있으며, 이는 성능상 큰 이점으로 작용.
+		- 한국어의 경우 띄어쓰기가 제멋대로인 경우가 많으므로, tokenization을 진행한 이후 subword segmentation을 적용하는 것이 권장됨.
+
+	***
+		1) Tokenization 만 수행
+		2) Subword Segmentation 만 수행.
+		3) Tokenization + Subword Segmentation 모두 수행
+
+6. Batchify
+	- Vocab 생성 및 word2index 맵핑 수행
+	- 효율화를 위한 전/후처리
+		- Split Train/Vaild/Test -> Read text & Build dictionary -> Sort by length Convert to integer -> Bachify and pad -> Shuffle and feed
+	
+	- torchtext로 수행할 수 있다.
+
+
